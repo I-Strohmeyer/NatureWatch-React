@@ -1,5 +1,49 @@
-$color: steelblue;
+$primary-color-1: #fff;
+$primary-color-2: #000;
 
-.my-flix {
-  color: $color;
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: $primary-color-2 !important;
+  color: $primary-color-1 !important;
+}
+
+.nav-wrap {
+  background-color: $primary-color-1 !important;
+  color: $primary-color-2;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  height: 100px;
+  margin-bottom: 100px;
+}
+
+header {
+  background-color: #fff;
+
+  .logo {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: $primary-color-2;
+    // alt-font: Cormorant Garamond
+    font-family: "Playfair Display", serif;
+  }
+
+  .nav {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+
+    .nav-item {
+      margin-left: 1rem;
+      font-size: 1.2rem;
+
+      .nav-link {
+        color: $primary-color-2 !important;
+        font-family: "Poppins", sans-serif;
+      }
+    }
+  }
 }

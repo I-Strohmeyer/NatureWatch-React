@@ -1,0 +1,108 @@
+
+#bs-override .login {
+  background-color: #fff;
+  color: #000;
+  padding: 60px 20px;
+  background-image: url(login-bg-new2.a2464cd0.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+#bs-override .form-control {
+  border: 1px solid #000;
+  border-radius: 0;
+}
+
+#bs-override .form-label {
+  margin: 12px 0 4px;
+}
+
+#bs-override .btn-primary {
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  border-radius: 0;
+  margin: 20px 0;
+}
+
+#bs-override p a {
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#bs-override .card-title,
+#bs-override .card-text {
+  color: #000;
+}
+
+#bs-override .card {
+  min-height: 624px;
+  margin-bottom: 30px;
+}
+
+#bs-override .card-body {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#bs-override .btn-link {
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#bs-override .card-title {
+  font-weight: bold;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.nav-wrap {
+  background-color: #fff !important;
+  color: #000;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  height: 100px;
+  margin-bottom: 100px;
+}
+
+header {
+  background-color: #fff;
+}
+header .logo {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #000;
+  font-family: "Playfair Display", serif;
+}
+header .nav {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+header .nav .nav-item {
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+header .nav .nav-item .nav-link {
+  color: #000 !important;
+  font-family: "Poppins", sans-serif;
+}
+#bs-override .footer-text {
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  background-color: #000;
+}
+/*# sourceMappingURL=index.011f33b6.css.map */

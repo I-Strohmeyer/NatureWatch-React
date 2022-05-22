@@ -1,0 +1,33 @@
+#bs-override .login {
+  background-color: #fff;
+  color: #000;
+  padding: 60px 20px;
+  // To-do: need to adjust the picture
+  background-image: url(../../assets/img/login-bg-new2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+#bs-override .form-control {
+  border: 1px solid #000;
+  border-radius: 0;
+}
+
+#bs-override .form-label {
+  margin: 12px 0 4px;
+}
+
+#bs-override .btn-primary {
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  border-radius: 0;
+  margin: 20px 0;
+}
+
+#bs-override p a {
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+}

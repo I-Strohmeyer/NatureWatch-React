@@ -5,6 +5,9 @@ import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { Col, Row } from "react-bootstrap";
+
+import "./main-view.scss";
 
 class MainView extends React.Component {
   constructor() {
@@ -49,13 +52,49 @@ class MainView extends React.Component {
     /* No user = LoginView. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
     if (!user)
       return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
+    //return <RegistrationView />;
 
     if (movies.length === 0) return <div className="main-view">Loading...</div>;
 
+    {
+      /*If `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/
+    }
     return (
-      <div className="main-view">
-        {/*If `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/}
+      <Row className="main-view justify-content-md-center">
         {selectedMovie ? (
+          <Col md={8}>
+            <MovieView
+              movieData={selectedMovie}
+              onBackClick={(newSelectedMovie) => {
+                this.setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          </Col>
+        ) : (
+          movies.map((movie) => (
+            <Col md={4} sm={6} key={movie._id}>
+              <MovieCard
+                key={movie._id}
+                movieData={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  this.setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            </Col>
+          ))
+        )}
+      </Row>
+    );
+  }
+}
+
+export default MainView;
+
+/*<div className="main-view"> */
+{
+  /*If `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/
+}
+/*{selectedMovie ? (
           <MovieView
             movieData={selectedMovie}
             onBackClick={(newSelectedMovie) => {
@@ -73,9 +112,4 @@ class MainView extends React.Component {
             />
           ))
         )}
-      </div>
-    );
-  }
-}
-
-export default MainView;
+      </div> */
