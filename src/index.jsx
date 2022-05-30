@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import MainView from "./components/main-view/main-view";
 import FooterView from "./components/footer-view/footer-view";
 import { Container, Nav } from "react-bootstrap";
+import { NavView } from "./components/nav-view/nav-view";
 
 // Import statement to indicate that you need to bundle `./index.scss`
 import "./index.scss";
@@ -12,21 +13,8 @@ class MyFlixApplication extends React.Component {
   render() {
     return (
       <>
-        <header>
-          <Container className="nav-wrap">
-            <div className="logo">Nature & Watch</div>
-            <Nav className="justify-content-end" activeKey="/home">
-              <Nav.Item>
-                <Nav.Link href="/home">Home</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="link-1">About</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="link-2">Contact</Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Container>
+        <header id="header">
+          <NavView />
         </header>
 
         <Container id="bs-override">

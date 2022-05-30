@@ -1,41 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { Row } from "react-bootstrap";
 
-import "./login-view.scss";
-
-export function LoginView(props) {
+export const ProfileView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  // To-DO: Declare hook for each input, see task 3.6
-  const [usernameErr, setUsernameErr] = useState("");
-  const [passwordErr, setPasswordErr] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /* Send a request to the server for authentication */
-    axios
-      .post("https://naturewatch-app.herokuapp.com/login", {
-        Username: username,
-        Password: password,
-      })
-      .then((response) => {
-        console.log(response);
-        const data = response.data;
-        props.onLoggedIn(data);
-      })
-      .catch((error) => {
-        console.log(error, "no such user");
-      });
   };
 
   return (
-    <Row className="justify-content-md-center login">
+    <Row className="justify-content-md-center">
       <Form>
-        <h4>Login</h4>
+        <h4>Profile</h4>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
@@ -60,4 +38,4 @@ export function LoginView(props) {
       </Form>
     </Row>
   );
-}
+};

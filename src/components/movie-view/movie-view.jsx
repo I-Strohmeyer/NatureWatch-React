@@ -1,20 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export class MovieView extends React.Component {
   //
   render() {
-    const { movieData, onBackClick } = this.props;
+    const { movie, onBackClick } = this.props;
 
     return (
       <Card style={{ width: "25rem" }} className="movie-view">
         {/* Placeholder image */}
         <Card.Img variant="top" src="../../src/assets/img/login-bg-new2.png" />
         <Card.Body>
-          <Card.Title>{movieData.Title}</Card.Title>
-          <Card.Text>{movieData.Description}</Card.Text>
-          <Card.Text>Year: {movieData.Year}</Card.Text>
+          <Card.Title>{movie.Title}</Card.Title>
+          <Card.Text>{movie.Description}</Card.Text>
+          <Card.Text>Year: {movie.Year}</Card.Text>
+          <Link to={`/directors/${movie.Director.Name}`}>
+            <Button variant="link">Director</Button>
+          </Link>
+
+          <Link to={`/genres/${movie.Genre.Name}`}>
+            <Button variant="link">Genre</Button>
+          </Link>
           <Button
             onClick={() => {
               onBackClick(null);
@@ -30,7 +38,7 @@ export class MovieView extends React.Component {
 }
 
 MovieView.propTypes = {
-  movieData: PropTypes.shape({
+  movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     //ImagePath: PropTypes.string.isRequired,

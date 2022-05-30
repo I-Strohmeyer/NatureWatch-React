@@ -12,10 +12,21 @@ export function RegistrationView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password, email);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
+
+    axios
+      .post("https://naturewatch-app.herokuapp.com/users/register", {
+        Username: username,
+        Password: password,
+        Email: email,
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+      })
+      .catch((e) => {
+        console.log("error registering the user");
+      });
   };
 
   return (

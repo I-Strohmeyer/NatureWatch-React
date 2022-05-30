@@ -2,7 +2,7 @@ $primary-color-1: #fff;
 $primary-color-2: #000;
 
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 body {
@@ -10,40 +10,32 @@ body {
   color: $primary-color-1 !important;
 }
 
-.nav-wrap {
-  background-color: $primary-color-1 !important;
-  color: $primary-color-2;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
+#header {
   height: 100px;
   margin-bottom: 100px;
+  background-color: #fff !important;
+  color: $primary-color-2 !important;
 }
 
-header {
-  background-color: #fff;
+#header nav {
+  //height: 100px;
+  background-color: #fff !important;
+}
 
-  .logo {
-    font-size: 1.7rem;
-    font-weight: bold;
-    color: $primary-color-2;
-    // alt-font: Cormorant Garamond
-    font-family: "Playfair Display", serif;
-  }
+#header .navbar {
+  height: 100%;
+}
 
-  .nav {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
+#header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: $primary-color-2;
+  // alt-font: Cormorant Garamond
+  font-family: "Playfair Display", serif;
+}
 
-    .nav-item {
-      margin-left: 1rem;
-      font-size: 1.2rem;
-
-      .nav-link {
-        color: $primary-color-2 !important;
-        font-family: "Poppins", sans-serif;
-      }
-    }
-  }
+#header .nav-link {
+  margin-left: 20px;
+  color: $primary-color-2;
+  font-size: 1.1rem;
 }
