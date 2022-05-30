@@ -2,6 +2,7 @@ import React, { useState } from "react";
 //import Form from "react-bootstrap/Form";
 //import Button from "react-bootstrap/Button";
 import { Row, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 import "./registration-view.scss";
 
@@ -37,6 +38,7 @@ export function RegistrationView(props) {
           <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Group>
@@ -44,6 +46,7 @@ export function RegistrationView(props) {
         <Form.Group controlId="formPassword">
           <Form.Label>Password:</Form.Label>
           <Form.Control
+            value={password}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -52,6 +55,7 @@ export function RegistrationView(props) {
         <Form.Group controlId="formEmail">
           <Form.Label>E-Mail:</Form.Label>
           <Form.Control
+            value={email}
             type="email"
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -60,7 +64,7 @@ export function RegistrationView(props) {
           Register
         </Button>
         <p>
-          You already have an account? <a href="#">Log in here</a>
+          You already have an account? <a href="/">Log in here</a>
         </p>
       </Form>
     </Row>

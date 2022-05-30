@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { Card, Col } from "react-bootstrap";
 
 export const ProfileView = () => {
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -10,32 +12,38 @@ export const ProfileView = () => {
     e.preventDefault();
   };
 
+  const favoriteMovies = movies.filter((movie) => movie.favorite);
+
+  const getUser = (token) => {
+    axios
+      .get("https://naturewatch-app.herokuapp.com/users", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // Assign the result to the state
+        setUser(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const removeFavorite = (id) => {};
+
   return (
     <Row className="justify-content-md-center">
-      <Form>
-        <h4>Profile</h4>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-          Log in
-        </Button>
-        <p>
-          Don't have an account yet? <a href="#">Register here</a>
-        </p>
-      </Form>
+      <Col>
+        <Card>
+          <Card.Body>
+            <Card.Title>Profile</Card.Title>
+            <Card.Text>
+              <p>Username: {user}</p>
+              <p>Password: {password}</p>
+              <p>Email: {email}</p>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
     </Row>
   );
 };

@@ -7,17 +7,18 @@ export class MovieView extends React.Component {
   //
   render() {
     const { movie, onBackClick } = this.props;
+    const imageBaseURL = "public/img/";
 
     return (
       <Card style={{ width: "25rem" }} className="movie-view">
         {/* Placeholder image */}
-        <Card.Img variant="top" src="../../src/assets/img/login-bg-new2.png" />
+        <Card.Img variant="top" src={`${imageBaseURL}${movie.ImagePath}`} />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description}</Card.Text>
           <Card.Text>Year: {movie.Year}</Card.Text>
           <Link to={`/directors/${movie.Director.Name}`}>
-            <Button variant="link">Director</Button>
+            <Button variant="link">{movie.Director.Name}</Button>
           </Link>
 
           <Link to={`/genres/${movie.Genre.Name}`}>

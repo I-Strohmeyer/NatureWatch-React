@@ -55,7 +55,7 @@ export function LoginView(props) {
           Log in
         </Button>
         <p>
-          Don't have an account yet? <a href="#">Register here</a>
+          Don't have an account yet? <a href="/register">Register here</a>
         </p>
       </Form>
     </Row>
