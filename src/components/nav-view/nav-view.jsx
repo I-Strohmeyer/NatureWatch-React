@@ -37,7 +37,7 @@ export class NavView extends React.Component {
       return (
         <Navbar bg="light" expand="lg">
           <Container className="nav-wrap">
-            <Navbar.Brand className="logo" href="#home">
+            <Navbar.Brand className="logo" href="/">
               Nature & Watch
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -46,9 +46,9 @@ export class NavView extends React.Component {
               className="justify-content-end"
             >
               <Nav className="me-auto">
-                <Nav.Link href="#link">Watchlist</Nav.Link>
-                <NavDropdown title="Me" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">
+                <Nav.Link href="/">Movies</Nav.Link>
+                <NavDropdown title={user} id="basic-nav-dropdown">
+                  <NavDropdown.Item href={`/users/${user}`}>
                     Profile
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
@@ -70,7 +70,7 @@ export class NavView extends React.Component {
       return (
         <Navbar bg="light" expand="lg">
           <Container className="nav-wrap">
-            <Navbar.Brand className="logo" href="#home">
+            <Navbar.Brand className="logo" href="/">
               Nature & Watch
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />

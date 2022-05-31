@@ -1,4 +1,7 @@
-
+#bs-override .error {
+  color: #f00;
+  font-size: 0.8rem;
+}
 #bs-override .director-text {
   color: #000;
 }
@@ -74,10 +77,7 @@
 #bs-override .card-title {
   font-weight: bold;
 }
-#bs-override .movie-view {
-  margin: auto 0;
-  border: 1px solid red;
-}
+
 
 #bs-override .footer-text {
   font-size: 12px;

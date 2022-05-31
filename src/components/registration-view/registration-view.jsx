@@ -11,23 +11,56 @@ export function RegistrationView(props) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  // To-DO: Declare hook for each input, see task 3.6
+  const [usernameErr, setUsernameErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
+  const [emailErr, setEmailErr] = useState("");
+
+  const validateInput = () => {
+    let isReq = true;
+    if (!username) {
+      setUsernameErr("Username is required");
+      isReq = false;
+    } else if (username.length < 5) {
+      setUsernameErr("Username must be at least 5 characters long");
+      isReq = false;
+    }
+    if (!password) {
+      setPasswordErr("Password is required");
+      isReq = false;
+    } else if (password.length < 4) {
+      setPasswordErr("Password should be at least 4 characters long");
+      isReq = false;
+    }
+    if (!email) {
+      setEmailErr("E-Mail is required");
+      isReq = false;
+    } else if (email.indexOf("@") === -1) {
+      setEmailErr("Invalid E-Mail");
+      isReq = false;
+    }
+    return isReq;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios
-      .post("https://naturewatch-app.herokuapp.com/users/register", {
-        Username: username,
-        Password: password,
-        Email: email,
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
-      })
-      .catch((e) => {
-        console.log("error registering the user");
-      });
+    const isReq = validateInput();
+    if (validateInput()) {
+      axios
+        .post("https://naturewatch-app.herokuapp.com/users/register", {
+          Username: username,
+          Password: password,
+          Email: email,
+        })
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+        })
+        .catch((e) => {
+          console.log("error registering the user");
+        });
+    }
   };
 
   return (
@@ -41,6 +74,7 @@ export function RegistrationView(props) {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          {usernameErr && <span className="error">{usernameErr}</span>}
         </Form.Group>
 
         <Form.Group controlId="formPassword">
@@ -50,6 +84,7 @@ export function RegistrationView(props) {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          {passwordErr && <span className="error">{passwordErr}</span>}
         </Form.Group>
 
         <Form.Group controlId="formEmail">
@@ -59,6 +94,7 @@ export function RegistrationView(props) {
             type="email"
             onChange={(e) => setEmail(e.target.value)}
           />
+          {emailErr && <span className="error">{emailErr}</span>}
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Register
