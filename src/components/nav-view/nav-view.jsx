@@ -79,7 +79,7 @@ export class NavView extends React.Component {
               className="justify-content-end"
             >
               <Nav className="me-auto">
-                <Nav.Link href="#link">Log in</Nav.Link>
+                <Nav.Link href="/">Log in</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

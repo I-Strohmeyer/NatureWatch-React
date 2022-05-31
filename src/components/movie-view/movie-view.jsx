@@ -3,16 +3,17 @@ import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import "./movie-view.scss";
+
 export class MovieView extends React.Component {
   //
   render() {
     const { movie, onBackClick } = this.props;
-    const imageBaseURL = "public/img/";
 
     return (
       <Card style={{ width: "25rem" }} className="movie-view">
         {/* Placeholder image */}
-        <Card.Img variant="top" src={`${imageBaseURL}${movie.ImagePath}`} />
+        <Card.Img variant="top" src={movie.ImagePath} crossOrigin="anonymous" />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description}</Card.Text>
@@ -22,7 +23,7 @@ export class MovieView extends React.Component {
           </Link>
 
           <Link to={`/genres/${movie.Genre.Name}`}>
-            <Button variant="link">Genre</Button>
+            <Button variant="link">{movie.Genre.Name}</Button>
           </Link>
           <Button
             onClick={() => {

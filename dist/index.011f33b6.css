@@ -1,4 +1,16 @@
 
+#bs-override .director-text {
+  color: #000;
+}
+#bs-override .director-text h1 {
+  margin-bottom: 40px;
+}
+#bs-override .genre-text {
+  color: #000;
+}
+#bs-override .genre-text h1 {
+  margin-bottom: 40px;
+}
 #bs-override .login {
   background-color: #fff;
   color: #000;
@@ -36,9 +48,15 @@
   color: #000;
 }
 
-#bs-override .card {
+#bs-override .custom-movie-card {
   min-height: 624px;
   margin-bottom: 30px;
+}
+#bs-override .custom-movie-card .card-img-top {
+  max-height: 500px;
+}
+#bs-override .custom-movie-card .card-body-list {
+  height: 260px;
 }
 
 #bs-override .card-body {
@@ -55,6 +73,10 @@
 
 #bs-override .card-title {
   font-weight: bold;
+}
+#bs-override .movie-view {
+  margin: auto 0;
+  border: 1px solid red;
 }
 
 #bs-override .footer-text {

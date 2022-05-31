@@ -3,9 +3,17 @@
   color: #000;
 }
 
-#bs-override .card {
+#bs-override .custom-movie-card {
   min-height: 624px;
   margin-bottom: 30px;
+
+  .card-img-top {
+    max-height: 500px;
+  }
+
+  .card-body-list {
+    height: 260px;
+  }
 }
 
 #bs-override .card-body {
