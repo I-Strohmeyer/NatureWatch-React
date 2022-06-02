@@ -14,6 +14,30 @@
 #bs-override .genre-text h1 {
   margin-bottom: 40px;
 }
+#bs-override .profile-view {
+  color: #000;
+}
+#bs-override .profile-view .icon {
+  margin-right: 4px;
+}
+#bs-override .profile-view .accordion-button {
+  margin-bottom: 8px;
+  width: 100%;
+  border: 1px solid #000;
+  background-color: #fff;
+  font-size: 1rem;
+  height: 40px;
+  cursor: pointer;
+}
+#bs-override .profile-view .card {
+  border-radius: 0;
+}
+#bs-override .profile-view .delete-btn {
+  color: red;
+  font-size: 1rem;
+  border: 1px solid red;
+  height: 40px;
+}
 #bs-override .login {
   background-color: #fff;
   color: #000;
@@ -85,6 +109,9 @@
   text-align: center;
   padding: 10px;
   background-color: #000;
+}
+#bs-override .footer-text .heart {
+  display: inline-block;
 }
 
 * {
