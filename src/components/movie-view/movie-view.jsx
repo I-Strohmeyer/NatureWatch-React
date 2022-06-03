@@ -47,7 +47,7 @@ export class MovieView extends React.Component {
           variant="top"
           src={movie.ImagePath}
           crossOrigin="anonymous"
-          onClick={this.addFavorite(movie)}
+          onClick={() => this.addFavorite(movie)}
         />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>

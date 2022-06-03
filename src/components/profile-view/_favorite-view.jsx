@@ -25,6 +25,7 @@ export function FavoriteView({ favoriteMovies, movies }) {
       )
       .then((response) => {
         alert("Removed from watchlist");
+        window.open("/", "_self");
         console.log(response);
       })
       .catch(function (error) {
@@ -40,7 +41,7 @@ export function FavoriteView({ favoriteMovies, movies }) {
     return result.map((movie) => (
       <Col className="fav-item" key={movie._id}>
         <p>{movie.Title}</p>
-        <Button onClick={removeFavorite(movie)}>Remove</Button>
+        <Button onClick={() => removeFavorite(movie)}>Remove</Button>
       </Col>
     ));
   }
