@@ -38,6 +38,20 @@
   border: 1px solid red;
   height: 40px;
 }
+
+#bs-override .favorite-view {
+  border: none;
+  margin-top: 12px;
+}
+#bs-override .favorite-view .fav-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#bs-override .favorite-view .fav-item p {
+  margin: 0;
+}
 #bs-override .login {
   background-color: #fff;
   color: #000;

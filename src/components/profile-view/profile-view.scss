@@ -27,3 +27,19 @@
     height: 40px;
   }
 }
+
+#bs-override .favorite-view {
+  border: none;
+  margin-top: 12px;
+
+  .fav-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      margin: 0;
+    }
+  }
+}

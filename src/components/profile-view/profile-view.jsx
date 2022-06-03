@@ -20,8 +20,6 @@ export function ProfileView({ movies }) {
     e.preventDefault();
   };
 
-  //const favoriteMovies = movies.filter((movie) => movie.favorite);
-
   const getUser = (token) => {
     axios
       .get(`https://naturewatch-app.herokuapp.com/users/${userId}`, {
@@ -44,8 +42,6 @@ export function ProfileView({ movies }) {
   useEffect(() => {
     getUser(token);
   }, []);
-
-  const removeFavorite = (id) => {};
 
   const deleteAccount = () => {
     axios
@@ -72,7 +68,7 @@ export function ProfileView({ movies }) {
 
             <Accordion>
               <Accordion.Item eventKey="0">
-                <Accordion.Header>Edit user</Accordion.Header>
+                <Accordion.Header>Edit User</Accordion.Header>
                 <Accordion.Body>
                   <_UserView
                     username={username}
@@ -88,10 +84,6 @@ export function ProfileView({ movies }) {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
-            <FavoriteView
-              favoriteMovies={favoriteMovies}
-              movies={movies}
-            ></FavoriteView>
 
             <Button
               variant="primary"
@@ -101,6 +93,16 @@ export function ProfileView({ movies }) {
             >
               Delete Account
             </Button>
+          </Card.Body>
+        </Card>
+
+        <Card className="favorite-view">
+          <Card.Body>
+            <Card.Title>Favorite Movies</Card.Title>
+            <FavoriteView
+              favoriteMovies={favoriteMovies}
+              movies={movies}
+            ></FavoriteView>
           </Card.Body>
         </Card>
       </Col>
