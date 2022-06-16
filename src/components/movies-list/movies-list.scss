@@ -1,0 +1,15 @@
+#bs-override .filter-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+
+  h4 {
+    margin-bottom: 0;
+  }
+}
+
+#bs-override .filter-input-wrapper .form-control {
+  min-width: 300px;
+  max-width: 300px;
+}

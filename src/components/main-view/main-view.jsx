@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import { connect } from "react-redux";
+
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import { RegistrationView } from "../registration-view/registration-view";
@@ -8,62 +10,52 @@ import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { LoginView } from "../login-view/login-view";
-import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import MoviesList from "../movies-list/movies-list";
+
 import { Col, Row } from "react-bootstrap";
 
 import "./main-view.scss";
 
+import { setMovies, setUser } from "../../actions/actions";
+
 class MainView extends React.Component {
   constructor() {
     super();
-    this.state = {
-      movies: [],
-      user: null,
-    };
+    this.state = {};
   }
 
   componentDidMount() {
-    let accessToken = localStorage.getItem("token");
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
-      this.getMovies(accessToken);
-    }
+    this.getMovies();
   }
 
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
   onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-    });
-
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
     localStorage.setItem("user_id", authData.user._id);
-    this.getMovies(authData.token);
+    this.getMovies();
   }
 
-  getMovies(token) {
-    axios
-      .get("https://naturewatch-app.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
+  getMovies() {
+    const { token } = this.props.currentUser;
+    token &&
+      axios
+        .get("https://naturewatch-app.herokuapp.com/movies", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          // Assign the result
+          this.props.setMovies(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
         });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   render() {
-    const { movies, user } = this.state;
+    let { movies } = this.props;
+    let user = this.props.currentUser;
 
     /* No user = LoginView. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
 
@@ -84,11 +76,13 @@ class MainView extends React.Component {
               if (movies.length === 0)
                 return <div className="main-view">Loading...</div>;
 
-              return movies.map((m) => (
+              /*return movies.map((m) => (
                 <Col md={4} key={m._id}>
                   <MovieCard movie={m} />
                 </Col>
-              ));
+              )); */
+
+              return <MoviesList movies={movies} />;
             }}
           />
 
@@ -199,7 +193,14 @@ class MainView extends React.Component {
   }
 }
 
-export default MainView;
+let mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+    currentUser: state.currentUser,
+  };
+};
+
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);
 
 /*<div className="main-view"> */
 {

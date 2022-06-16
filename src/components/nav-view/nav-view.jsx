@@ -33,59 +33,43 @@ export class NavView extends React.Component {
   render() {
     const { user } = this.state;
 
-    if (user !== null) {
-      return (
-        <Navbar bg="light" expand="lg">
-          <Container className="nav-wrap">
-            <Navbar.Brand className="logo" href="/">
-              Nature & Watch
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse
-              id="basic-navbar-nav"
-              className="justify-content-end"
-            >
-              <Nav className="me-auto">
-                <Nav.Link href="/">Movies</Nav.Link>
-                <NavDropdown title={user} id="basic-nav-dropdown">
-                  <NavDropdown.Item href={`/users/${user}`}>
-                    Profile
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item
-                    onClick={() => {
-                      this.onLoggedOut();
-                    }}
-                    href="/"
-                  >
-                    Log out
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      );
-    } else {
-      return (
-        <Navbar bg="light" expand="lg">
-          <Container className="nav-wrap">
-            <Navbar.Brand className="logo" href="/">
-              Nature & Watch
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse
-              id="basic-navbar-nav"
-              className="justify-content-end"
-            >
-              <Nav className="me-auto">
-                <Nav.Link href="/">Log in</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      );
-    }
+    return (
+      <Navbar bg="light" expand="lg">
+        <Container className="nav-wrap">
+          <Navbar.Brand className="logo" href="/">
+            Nature & Watch
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="justify-content-end"
+          >
+            <Nav className="me-auto">
+              {user == 0 && <Nav.Link href="/">Log in</Nav.Link>}
+              {user !== 0 && (
+                <>
+                  <Nav.Link href="/">Movies</Nav.Link>
+                  <NavDropdown title={user} id="basic-nav-dropdown">
+                    <NavDropdown.Item href={`/users/${user}`}>
+                      Profile
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item
+                      onClick={() => {
+                        this.onLoggedOut();
+                      }}
+                      href="/"
+                    >
+                      Log out
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    );
   }
 }
 
