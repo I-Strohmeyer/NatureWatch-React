@@ -27,7 +27,8 @@ class MainView extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      this.getMovies();
+      let token = localStorage.getItem("token");
+      this.getMovies(token);
     }
   }
 
@@ -37,12 +38,10 @@ class MainView extends React.Component {
     localStorage.setItem("user", authData.user.Username);
     localStorage.setItem("user_id", authData.user._id);
     this.props.setAuth(authData.token, authData.user);
-    this.getMovies();
+    this.getMovies(authData.token);
   }
 
-  getMovies() {
-    const { token } = this.props.userAuth;
-
+  getMovies(token) {
     axios
       .get("https://naturewatch-app.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` },
