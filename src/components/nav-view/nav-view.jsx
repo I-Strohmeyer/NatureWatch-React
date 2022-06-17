@@ -1,37 +1,20 @@
 import React from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { connect } from "react-redux";
 
+import { setAuth } from "../../actions/actions";
 import "./nav-view.scss";
 
 export class NavView extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      user: null,
-    };
-  }
-
-  componentDidMount() {
-    let accessToken = localStorage.getItem("token");
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
-    }
-  }
-
   onLoggedOut() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
     localStorage.clear();
-    this.setState({
-      user: null,
-    });
+    this.setAuth(null, null);
     window.open("/", "_self");
   }
 
   render() {
-    const { user } = this.state;
+    const user = this.props.user;
+    console.log("from render: user is", user);
 
     return (
       <Navbar bg="light" expand="lg">
@@ -72,6 +55,14 @@ export class NavView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = (state) => {
+  return {
+    user: state.userAuth,
+  };
+};
+
+export default connect(mapStateToProps, { setAuth })(NavView);
 
 /*const NavView = ({user}) => {
   return (

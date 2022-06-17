@@ -22,17 +22,15 @@ function movies(state = [], action) {
   }
 }
 
-function getUser() {
+function getAuth() {
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
   if (token && user) {
     return { token: token, user: user };
-  }
-
-  return null;
+  } else return null;
 }
 
-function currentUser(state = getUser(), action) {
+function userAuth(state = getAuth(), action) {
   switch (action.type) {
     case actions.SET_USER:
       return {
@@ -45,11 +43,23 @@ function currentUser(state = getUser(), action) {
   }
 }
 
+function user(state = {}, action) {
+  switch (action.type) {
+    case actions.SET_USER:
+      return {
+        ...state,
+      };
+    default:
+      return state;
+  }
+}
+
 //combined reducers
 const moviesApp = combineReducers({
   visibilityFilter,
   movies,
-  currentUser,
+  userAuth,
+  user,
 });
 
 export default moviesApp;

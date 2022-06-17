@@ -17,7 +17,7 @@ import { Col, Row } from "react-bootstrap";
 
 import "./main-view.scss";
 
-import { setMovies, setUser } from "../../actions/actions";
+import { setMovies, setAuth } from "../../actions/actions";
 
 class MainView extends React.Component {
   constructor() {
@@ -26,7 +26,9 @@ class MainView extends React.Component {
   }
 
   componentDidMount() {
-    this.getMovies();
+    if (localStorage.getItem("token")) {
+      this.getMovies();
+    }
   }
 
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
@@ -34,28 +36,29 @@ class MainView extends React.Component {
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
     localStorage.setItem("user_id", authData.user._id);
+    this.props.setAuth(authData.token, authData.user);
     this.getMovies();
   }
 
   getMovies() {
-    const { token } = this.props.currentUser;
-    token &&
-      axios
-        .get("https://naturewatch-app.herokuapp.com/movies", {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((response) => {
-          // Assign the result
-          this.props.setMovies(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    const { token } = this.props.userAuth;
+
+    axios
+      .get("https://naturewatch-app.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // Assign the result
+        this.props.setMovies(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
     let { movies } = this.props;
-    let user = this.props.currentUser;
+    let user = this.props.userAuth;
 
     /* No user = LoginView. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
 
@@ -66,7 +69,7 @@ class MainView extends React.Component {
             exact
             path="/"
             render={() => {
-              if (!user)
+              if (user === null)
                 return (
                   <Col>
                     <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
@@ -196,11 +199,11 @@ class MainView extends React.Component {
 let mapStateToProps = (state) => {
   return {
     movies: state.movies,
-    currentUser: state.currentUser,
+    userAuth: state.userAuth,
   };
 };
 
-export default connect(mapStateToProps, { setMovies, setUser })(MainView);
+export default connect(mapStateToProps, { setMovies, setAuth })(MainView);
 
 /*<div className="main-view"> */
 {
