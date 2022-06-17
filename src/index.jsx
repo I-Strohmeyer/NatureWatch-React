@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import MainView from "./components/main-view/main-view";
 import FooterView from "./components/footer-view/footer-view";
 import { Container } from "react-bootstrap";
-import { NavView } from "./components/nav-view/nav-view";
+import NavView from "./components/nav-view/nav-view";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";

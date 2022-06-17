@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { setAuth } from "../../actions/actions";
 import "./nav-view.scss";
 
-export class NavView extends React.Component {
+class NavView extends React.Component {
   onLoggedOut() {
     localStorage.clear();
     this.setAuth(null, null);
@@ -13,8 +13,8 @@ export class NavView extends React.Component {
   }
 
   render() {
-    const user = this.props.user;
-    console.log("from render: user is", user);
+    const user = this.props.userAuth;
+    console.log("from nav render: user is", user);
 
     return (
       <Navbar bg="light" expand="lg">
@@ -28,7 +28,7 @@ export class NavView extends React.Component {
             className="justify-content-end"
           >
             <Nav className="me-auto">
-              {user == 0 && <Nav.Link href="/">Log in</Nav.Link>}
+              {user === 0 && <Nav.Link href="/">Log in</Nav.Link>}
               {user !== 0 && (
                 <>
                   <Nav.Link href="/">Movies</Nav.Link>
@@ -57,6 +57,7 @@ export class NavView extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+  console.log("from mapStateToProps: state is", state.userAuth);
   return {
     user: state.userAuth,
   };
