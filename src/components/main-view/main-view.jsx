@@ -39,6 +39,7 @@ class MainView extends React.Component {
     localStorage.setItem("user_id", authData.user._id);
     this.props.setAuth(authData.token, authData.user);
     this.getMovies(authData.token);
+    window.open("/", "_self");
   }
 
   getMovies(token) {

@@ -8,12 +8,12 @@ import "./nav-view.scss";
 class NavView extends React.Component {
   onLoggedOut() {
     localStorage.clear();
-    this.setAuth(null, null);
+    this.props.setAuth(null, null);
     window.open("/", "_self");
   }
 
   render() {
-    const user = this.props.userAuth;
+    const user = this.props.user;
     console.log("from nav render: user is", user);
 
     return (
@@ -28,12 +28,12 @@ class NavView extends React.Component {
             className="justify-content-end"
           >
             <Nav className="me-auto">
-              {user === 0 && <Nav.Link href="/">Log in</Nav.Link>}
-              {user !== 0 && (
+              {user === null && <Nav.Link href="/">Log in</Nav.Link>}
+              {user !== null && (
                 <>
                   <Nav.Link href="/">Movies</Nav.Link>
-                  <NavDropdown title={user} id="basic-nav-dropdown">
-                    <NavDropdown.Item href={`/users/${user}`}>
+                  <NavDropdown title={user.user} id="basic-nav-dropdown">
+                    <NavDropdown.Item href={`/users/${user.user}`}>
                       Profile
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
