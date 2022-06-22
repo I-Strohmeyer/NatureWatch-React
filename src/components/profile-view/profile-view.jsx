@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Col, Row, Accordion, Button } from "react-bootstrap";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import { _UserView } from "./_user-view";
-import { FavoriteView } from "./_favorite-view";
+import FavoriteView from "./_favorite-view";
 
 import "./profile-view.scss";
 
-export function ProfileView({ movies }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
+import { setUser } from "../../actions/actions";
+import { useParams } from "react-router-dom";
+
+export function ProfileView() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const userId = localStorage.getItem("user_id");
   const token = localStorage.getItem("token");
@@ -20,6 +23,9 @@ export function ProfileView({ movies }) {
     e.preventDefault();
   };
 
+  const { name } = useParams();
+  console.log(name);
+
   const getUser = (token) => {
     axios
       .get(`https://naturewatch-app.herokuapp.com/users/${userId}`, {
@@ -27,12 +33,8 @@ export function ProfileView({ movies }) {
       })
       .then((response) => {
         // Assign the result to the state
-        //console.log(response.data);
-        setUsername(response.data.Username);
-        setEmail(response.data.Email);
-        setFavoriteMovies(response.data.FavoriteMovies);
-        setBirthday(response.data.Birthday);
-        setPassword(response.data.Password);
+        console.log("from get user in profileview", response.data);
+        dispatch(setUser(response.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -70,17 +72,7 @@ export function ProfileView({ movies }) {
               <Accordion.Item eventKey="0">
                 <Accordion.Header>Edit User</Accordion.Header>
                 <Accordion.Body>
-                  <_UserView
-                    username={username}
-                    setUsername={setUsername}
-                    password={password}
-                    setPassword={setPassword}
-                    email={email}
-                    setEmail={setEmail}
-                    handleSubmit={handleSubmit}
-                    birthday={birthday}
-                    setBirthday={setBirthday}
-                  ></_UserView>
+                  <_UserView />
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
@@ -99,10 +91,7 @@ export function ProfileView({ movies }) {
         <Card className="favorite-view">
           <Card.Body>
             <Card.Title>Favorite Movies</Card.Title>
-            <FavoriteView
-              favoriteMovies={favoriteMovies}
-              movies={movies}
-            ></FavoriteView>
+            <FavoriteView />
           </Card.Body>
         </Card>
       </Col>

@@ -27,7 +27,8 @@ function getAuth() {
   const user = localStorage.getItem("user");
   if (token && user) {
     return { token: token, user: user };
-  } else return null;
+  }
+  return null;
 }
 
 function userAuth(state = getAuth(), action) {
@@ -43,23 +44,21 @@ function userAuth(state = getAuth(), action) {
   }
 }
 
-/*function user(state = {}, action) {
+function user(state = {}, action) {
   switch (action.type) {
     case actions.SET_USER:
-      return {
-        ...state,
-      };
+      return action.value;
     default:
       return state;
   }
-} */
+}
 
 //combined reducers
 const moviesApp = combineReducers({
   visibilityFilter,
   movies,
   userAuth,
-  //user,
+  user,
 });
 
 export default moviesApp;

@@ -2,16 +2,19 @@ import React from "react";
 import { Col, Button } from "react-bootstrap";
 import axios from "axios";
 
+import { connect } from "react-redux";
+import { setUser } from "../../actions/actions";
+
 import "./profile-view.scss";
 
-export function FavoriteView({ favoriteMovies, movies }) {
-  const finalFavArray = favoriteMovies.map(function (obj) {
+function FavoriteView() {
+  /*const finalFavArray = favoriteMovies.map(function (obj) {
     return obj._id;
   });
 
   console.log(finalFavArray);
 
-  const result = movies.filter(({ _id }) => finalFavArray.includes(_id));
+  const result = movies.filter(({ _id }) => finalFavArray.includes(_id)); */
 
   function removeFavorite(movie) {
     const userId = localStorage.getItem("user_id");
@@ -33,7 +36,7 @@ export function FavoriteView({ favoriteMovies, movies }) {
       });
   }
 
-  if (favoriteMovies.length == 0) {
+  /*if (favoriteMovies.length == 0) {
     return <p>You have no fav movies</p>;
   }
 
@@ -44,5 +47,15 @@ export function FavoriteView({ favoriteMovies, movies }) {
         <Button onClick={() => removeFavorite(movie)}>Remove</Button>
       </Col>
     ));
-  }
+  } */
+
+  return <h1>Test fav view</h1>;
 }
+
+let mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+  };
+};
+
+export default connect(mapStateToProps, { setUser })(FavoriteView);
