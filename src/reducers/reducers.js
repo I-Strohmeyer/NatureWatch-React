@@ -32,7 +32,7 @@ function getAuth() {
 
 function userAuth(state = getAuth(), action) {
   switch (action.type) {
-    case actions.SET_USER:
+    case actions.SET_AUTH:
       return {
         ...state,
         token: action.value.token,
@@ -43,7 +43,7 @@ function userAuth(state = getAuth(), action) {
   }
 }
 
-function user(state = {}, action) {
+/*function user(state = {}, action) {
   switch (action.type) {
     case actions.SET_USER:
       return {
@@ -52,14 +52,14 @@ function user(state = {}, action) {
     default:
       return state;
   }
-}
+} */
 
 //combined reducers
 const moviesApp = combineReducers({
   visibilityFilter,
   movies,
   userAuth,
-  user,
+  //user,
 });
 
 export default moviesApp;

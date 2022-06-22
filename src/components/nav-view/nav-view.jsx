@@ -57,7 +57,6 @@ class NavView extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-  console.log("from mapStateToProps: state is", state.userAuth);
   return {
     user: state.userAuth,
   };
