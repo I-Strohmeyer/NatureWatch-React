@@ -5,7 +5,7 @@ import { Card, Col, Row, Accordion, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { _UserView } from "./_user-view";
-import FavoriteView from "./_favorite-view";
+import { FavoriteView } from "./_favorite-view";
 
 import "./profile-view.scss";
 
@@ -24,7 +24,6 @@ export function ProfileView() {
   };
 
   const { name } = useParams();
-  console.log(name);
 
   const getUser = (token) => {
     axios
