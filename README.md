@@ -1,4 +1,4 @@
-# NatureWatch-Client
+# NatureWatch-Client :leaves:
 
 Client-side for the NatureWatch app
 
