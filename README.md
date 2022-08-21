@@ -1,6 +1,7 @@
 # NatureWatch-Client :leaves:
 
-Client-side for the NatureWatch app
+Client-side for the NatureWatch app.
+Registered users can browse a selection of movies.
 
 ## Tech-Stack:
 
