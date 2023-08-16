@@ -27,7 +27,7 @@ export function FavoriteView() {
     const token = localStorage.getItem("token");
     axios
       .delete(
-        `https://naturewatch-app.herokuapp.com/users/${userId}/watchlist/${movie._id}`,
+        `https://naturewatch-api.onrender.com/users/${userId}/watchlist/${movie._id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

@@ -47,7 +47,7 @@ export function RegistrationView(props) {
     const isReq = validateInput();
     if (validateInput()) {
       axios
-        .post("https://naturewatch-app.herokuapp.com/users/register", {
+        .post("https://naturewatch-api.onrender.com/users/register", {
           Username: username,
           Password: password,
           Email: email,

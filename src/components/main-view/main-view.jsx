@@ -55,7 +55,7 @@ class MainView extends React.Component {
 
   getMovies(token) {
     axios
-      .get("https://naturewatch-app.herokuapp.com/movies", {
+      .get("https://naturewatch-api.onrender.com/movies", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

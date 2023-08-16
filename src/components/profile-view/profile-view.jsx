@@ -27,7 +27,7 @@ export function ProfileView() {
 
   const getUser = (token) => {
     axios
-      .get(`https://naturewatch-app.herokuapp.com/users/${userId}`, {
+      .get(`https://naturewatch-api.onrender.com/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -46,7 +46,7 @@ export function ProfileView() {
 
   const deleteAccount = () => {
     axios
-      .delete(`https://naturewatch-app.herokuapp.com/users/${userId}`, {
+      .delete(`https://naturewatch-api.onrender.com/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

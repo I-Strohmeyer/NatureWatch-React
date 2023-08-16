@@ -21,7 +21,7 @@ export class MovieView extends React.Component {
     const token = localStorage.getItem("token");
     axios
       .post(
-        `https://naturewatch-app.herokuapp.com/users/${userId}/watchlist/${movie._id}`,
+        `https://naturewatch-api.onrender.com/users/${userId}/watchlist/${movie._id}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

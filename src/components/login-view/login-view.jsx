@@ -18,7 +18,7 @@ export function LoginView(props) {
     e.preventDefault();
     /* Send a request to the server for authentication */
     axios
-      .post("https://naturewatch-app.herokuapp.com/login", {
+      .post("https://naturewatch-api.onrender.com/login", {
         Username: username,
         Password: password,
       })
